@@ -43,16 +43,15 @@ class PassengerListAdapter : PagingDataAdapter<Results, PassengerListAdapter.MyV
         }
     }
 
-    class DiffUtilCallBack: DiffUtil.ItemCallback<Results>() {
-        override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean {
-            return oldItem.displayTitle == newItem.displayTitle
-        }
+}
+class DiffUtilCallBack: DiffUtil.ItemCallback<Results>() {
+    override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean {
+        return oldItem.displayTitle == newItem.displayTitle
+    }
 
-        override fun areContentsTheSame(oldItem: Results, newItem: Results): Boolean {
-            return oldItem.displayTitle == newItem.displayTitle
-                    && oldItem.multimedia == newItem.multimedia
-        }
-
+    override fun areContentsTheSame(oldItem: Results, newItem: Results): Boolean {
+        return oldItem.displayTitle == newItem.displayTitle
+                && oldItem.mpaaRating == newItem.mpaaRating
     }
 
 }

@@ -2,7 +2,7 @@ package com.example.movietest
 
 import android.app.Application
 import com.example.movietest.api.MovieService
-import com.example.movietest.repository.MoveRepository
+import com.example.movietest.utils.PassengersDataSource
 import com.example.movietest.viewModel.MoveViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -30,7 +30,7 @@ class MySuperApp : Application(), KoinComponent {
 
     private val repository = module {
 
-factory { MoveRepository(get()) }
+        factory { PassengersDataSource(get()) }
     }
 
     private val currencyApi = module {

@@ -3,7 +3,6 @@ package com.example.movietest.utils
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.movietest.api.MovieService
-import com.example.movietest.data.ResponseTopMovies
 import com.example.movietest.data.Results
 
 class PassengersDataSource(private val api: MovieService) : PagingSource<Int, Results>() {

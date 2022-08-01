@@ -1,12 +1,9 @@
 package com.example.movietest.api
 
 import com.example.movietest.BuildConfig
-import com.example.movietest.data.Movie
 import com.example.movietest.data.ResponseTopMovies
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
