@@ -4,8 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.movietest.api.MovieService
 import com.example.movietest.data.Results
+import javax.inject.Inject
 
-class PassengersDataSource(private val api: MovieService) : PagingSource<Int, Results>() {
+class PassengersDataSource @Inject constructor(private val api: MovieService) : PagingSource<Int, Results>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Results> {
         return try {
@@ -23,7 +24,7 @@ class PassengersDataSource(private val api: MovieService) : PagingSource<Int, Re
     }
 
     override fun getRefreshKey(state: PagingState<Int, Results>): Int? {
-        TODO("Not yet implemented")
+      return state.anchorPosition
     }
 }
 

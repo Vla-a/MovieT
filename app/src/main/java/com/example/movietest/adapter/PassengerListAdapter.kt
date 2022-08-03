@@ -27,9 +27,9 @@ class PassengerListAdapter : PagingDataAdapter<Results, PassengerListAdapter.MyV
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        val imageView: ImageView = view.findViewById(R.id.image)
-        val tvName: TextView = view.findViewById(R.id.movie_title)
-        val tvDesc: TextView = view.findViewById(R.id.movie_desc)
+        private val imageView: ImageView = view.findViewById(R.id.image)
+        private val tvName: TextView = view.findViewById(R.id.movie_title)
+        private val tvDesc: TextView = view.findViewById(R.id.movie_desc)
 
         fun bind(data: Results) {
             tvName.text = data.displayTitle.toString()

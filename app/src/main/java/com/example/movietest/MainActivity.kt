@@ -2,23 +2,23 @@ package com.example.movietest
 
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.movietest.adapter.PassengerListAdapter
 import com.example.movietest.adapter.PassengersLoadStateAdapter
 import com.example.movietest.databinding.ActivityMainBinding
 import com.example.movietest.viewModel.MoveViewModel
-import kotlinx.coroutines.flow.collectLatest
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
-    val moveViewModel: MoveViewModel by viewModel()
+    val moveViewModel: MoveViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
 
@@ -27,12 +27,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val passengerListAdapter = PassengerListAdapter()
 
-        binding.rvMovies.layoutManager =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.rvMovies.adapter = passengerListAdapter
+//        binding.rvMovies.layoutManager =
+//            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+//        binding.rvMovies.adapter = passengerListAdapter
 
 
         val passengersAdapter = PassengerListAdapter()
@@ -40,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
             adapter = passengersAdapter
             setHasFixedSize(true)
+
         }
 
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-            moveViewModel.passengers.collectLatest { pagedData ->
+            moveViewModel.passengers.collect { pagedData ->
                 passengersAdapter.submitData(pagedData)
             }
         }
